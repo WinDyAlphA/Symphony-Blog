@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+
+    <style>
+        .table {
+            margin-top: 20px;
+            margin-bottom:50px;
+        }
+    </style>
+    <h1>Article</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ article.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ article.description }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ article.pseudo }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% for commentaire in article.commentaires %}
+
+        {{ commentaire }}
+
+    {% endfor %}
+    <form id="comment" method="post" action="{{ path('', {'id': article.id}) }}">
+        <div class="form-group">
+            <label for="commentaire">Commentaire</label>
+            <textarea class="form-control" id="commentaire" name="commentaire" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+
+{% endblock %}
